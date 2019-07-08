@@ -27,7 +27,7 @@ public class ApiController {
     @PostMapping("tradeVoucherUpload")
     public Object doTradeVoucherUpload(@RequestBody TradeVoucherUploadRequest request) {
 
-        log.info("requet====");
+        log.info("requet====11111");
 
         Map<String, Object> resp = new HashMap<>();
 
