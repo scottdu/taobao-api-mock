@@ -6,6 +6,9 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +16,16 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1.0")
 public class ApiController {
+
+    private String dateToString(Date date) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return sdf.format(date);
+        } catch (Exception e) {
+            log.error("{}", e);
+        }
+        return "";
+    }
 
     @ApiOperation(value="服务心跳接口", notes="用于检测服务是否启动的接口")
     @GetMapping("/echo")
@@ -24,10 +37,12 @@ public class ApiController {
         return map;
     }
 
+    @ApiOperation(value=" 淘宝交易凭证上传", notes="淘宝交易凭证上传")
     @PostMapping("tradeVoucherUpload")
     public Object doTradeVoucherUpload(@RequestBody TradeVoucherUploadRequest request) {
 
-        log.info("requet====11111");
+
+        log.info("request => {}", request.toString());
 
         Map<String, Object> resp = new HashMap<>();
 
@@ -35,7 +50,9 @@ public class ApiController {
 
         Map<String, Object> fObj = new HashMap<>();
 
-        fObj.put("gmt_create", "2019-01-01 00:00:00");
+
+
+        fObj.put("gmt_create", dateToString(new Date()));
         fObj.put("file_path", "http://img07.taobaocdn.com/imgextra/i7/22670458/T2dD0kXb4cXXXXXXXX_!!22670458.jpg");
         fObj.put("size", 100);
         fObj.put("status", "pass");
