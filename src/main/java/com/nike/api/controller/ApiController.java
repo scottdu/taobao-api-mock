@@ -5,8 +5,6 @@ import com.nike.api.pojo.TradeVoucherUploadRequest;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,7 +31,7 @@ public class ApiController {
         log.info("echo........");
         Map<String, Object> map = new HashMap<>();
         map.put("result_code", 200);
-        map.put("result_message", "imok");
+        map.put("result_message", "imok111111");
         return map;
     }
 
